@@ -1,0 +1,26 @@
+version: '3'
+services:
+  web:
+    build: ./
+    volumes:
+      - ${APP_PATH_HOST}:${APP_PATH_CONTAINER}
+    ports:
+      - 8080:80
+    working_dir: ${APP_PATH_CONTAINER}
+  db:
+    image: mariadb
+    restart: always
+    environment:
+      MARIADB_USER: yii2_docker_rabbit_project
+      MARIADB_DATABASE: yii2_docker_rabbit_project
+      MARIADB_PASSWORD: WlPmti1DIgLelhG
+      MARIADB_ROOT_PASSWORD: 85FD8Z6aG3m6r7M
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 6080:8080
+  rabbitmq:
+    image: rabbitmq:3.12-management
+    ports:
+      - 15672:15672
