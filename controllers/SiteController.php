@@ -118,8 +118,7 @@ class SiteController extends AppController {
 		$connection = new AMQPStreamConnection(Yii::$app->params['rabbit_host'], Yii::$app->params['rabbit_port'], Yii::$app->params['rabbit_login'], Yii::$app->params['rabbit_password']);
 		$channel = $connection->channel();
 		$channel->exchange_declare(Yii::$app->params['rabbit_exchange'], AMQPExchangeType::DIRECT, false, true, false);
-		$channel->queue_declare(Yii::$app->params['rabbit_queue'], false, true, false, false);
-		list($queue, $messageCount, $consumerCount) = $channel->queue_declare(Yii::$app->params['rabbit_queue'], true);
+		list($queue, $messageCount, $consumerCount) = $channel->queue_declare(Yii::$app->params['rabbit_queue'], false, true, false, false);
 		$error_count = 0;
 		$alls_queues_rabbits_shows = AddMessageRabbitMq::find()->asArray()->all();
 		if (Yii::$app->request->isPost) {

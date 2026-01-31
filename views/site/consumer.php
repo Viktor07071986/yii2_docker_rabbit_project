@@ -3,15 +3,21 @@
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
 
+$pointer_events = "pointer-events: all;";
+$opacity = "opacity: 1;";
+
 if ($messageCount == 0) {
 	$pointer_events = "pointer-events: none;";
 	$opacity = "opacity: 0.5;";
 }
 
-$pointer_events = "pointer-events: all;";
-$opacity = "opacity: 1;";
-
 ?>
+
+<style>
+    table tr th,  table tr td {
+        border: 1px solid black;
+    }
+</style>
 
 <div class="add-rabbit-message">
 	<h1><?= Html::encode($this->title) ?></h1>
